@@ -19,8 +19,21 @@ Route::get('/', function () {
 });
 
 /**
+ * APIs on frontend of software
+ */
+
+Route::get('/frontend/cep', function () {
+    return view('cep');
+});
+
+/**
+ * APIs on backend of software
+ */
+
+/**
  * Testing how APIs usually work
  */
+
 Route::get('/test/{id}', function ($id) {
    
     switch($id) {
