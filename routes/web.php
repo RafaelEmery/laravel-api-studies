@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use GuzzleHttp\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,72 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+/**
+ * Testing how APIs usually work
+ */
+Route::get('/test/{id}', function ($id) {
+   
+    switch($id) {
+        case 1:
+            $client = new Client();
+            $response = $client->request('GET', 'https://api.github.com/repos/RafaelEmery/blog-laravel');
+            
+            return $response->getBody();
+        break;
+        case 2:
+            $client = new Client();
+            $response = $client->request('GET', 'https://api.github.com/RafaelEmery', [
+                'auth' => ['RafaelEmery', 'pass']
+            ]);
+
+            dd($response);
+        break;
+    }
+    
+});
+
+/**
+ * Tronald Dump API for Trump's dumbest stuffs
+ */
+Route::get('/dump/random', function () {
+    
+    $client = new Client([
+        'base_uri' => 'https://api.tronalddump.io',
+        'headers' => [
+            'Accept' => 'application/hal+json'
+        ],
+    ]);
+    $response = $client->request('GET', '/random/quote');
+
+    return $response->getBody();
+});
+
+Route::get('dump/author/{id}', function ($id) {
+    
+    $client = new Client([
+        'base_uri' => 'https://api.tronalddump.io',
+        'headers' => [
+            'Accept' => 'application/hal+json'
+        ],
+    ]);
+    $response = $client->request('GET', '/author/{id}');
+
+    return $response->getBody();
+});
+
+/**
+ * Postmon for brazilian CEP fast consulting
+ */
+Route::get('/cep/{cep}', function ($cep) {
+
+    $client = new Client([
+        'base_uri' => 'https://api.postmon.com.br/v1/'
+    ]);
+    $response = $client->request('GET', 'cep/' ,[
+        'cep_a_consultar' => $cep
+    ]);
+
+    return $response->getBody();
 });
