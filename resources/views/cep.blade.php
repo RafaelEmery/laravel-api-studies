@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', 'API de CEP')
+@section('title', 'CEP APIs')
 
 @section('content')
 
@@ -18,7 +18,7 @@
                     <div class="form-group">
                         <input type="text" name="cep" id="cep" class="form-control" placeholder="Digite seu CEP aqui">
                     </div>
-                    <button class="btn btn-primary" type="submit">Buscar</button>
+                    <button class="btn btn-primary" type="submit">Search</button>
                 </form>
             </div>
         </div>
