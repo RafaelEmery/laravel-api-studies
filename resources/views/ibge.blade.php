@@ -4,6 +4,7 @@
 
 @section('content')
 
+<!-- Container of States and Cities -->
 <div class="container">
     <div class="col-md-6">
         <div class="alert alert-info text-center" role="alert" style="margin-top: 50px;">
@@ -25,8 +26,31 @@
                             <option value="">Select a city</option>
                         </select>
                     </div>
-                    <button type="submit" id="showValues" class="btn btn-primary">See Values</button>
+                <!-- <button type="submit" id="showValues" class="btn btn-primary">See Values</button> -->
                 <!-- </form> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Container of Names -->
+<div class="container">
+    <div class="col-md-6">
+        <div class="alert alert-info text-center" role="alert" style="margin-top: 50px;">
+            Exemple of using an API from IBGE for brazilian names and their info and stats. <a href="https://servicodados.ibge.gov.br/api/docs/censos/nomes?versao=2" target="_blank">Click here to read the docs!</a>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header"> Names data using Fetch API </div>
+            <div class="card-body">
+                <a href="#modalNamesRankings" class="badge badge-pill badge-success" style="margin-bottom: 20px;"> See the ranking of brazilian names here!</a>      
+                <form onsubmit="getNameStats(event, this);">              
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Plese enter your name here.">
+                    </div>
+                    <button class="btn btn-primary" type="submit">See some cool stuffs</button>
+                </form>
             </div>
         </div>
     </div>
@@ -37,7 +61,8 @@
 @section('script')
 
 <script>
-    
+    //Code for the IBGE's States and Cities API 
+
     function getStates() {
         console.log('On getStates')
 
@@ -92,6 +117,44 @@
     //     alert(message);
     // }
     
+</script>
+
+<script>
+    //Code for the IBGE's Names API
+
+    function getNamesRanking() {
+        console.log('On getNamesRanking');
+
+        const url = 'https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking';
+
+        fetch(url) 
+            .then(response => response.json())
+            .then(names => {
+                console.log(names);
+            });
+    }
+
+    getNamesRanking();
+
+    function getNameStats(event, form) {
+        console.log('On getNameStats');
+
+        event.preventDefault();
+
+        const inputName = form.name;
+
+        if (inputName) {
+            const nameValue = inputName.value;
+            const url = `https://servicodados.ibge.gov.br/api/v2/censos/nomes/${nameValue}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(nameStats => {
+                    console.log(nameStats);
+                });
+        }
+    }
+
 </script>
     
 @endsection
