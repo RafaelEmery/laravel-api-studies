@@ -4,55 +4,61 @@
 
 @section('content')
 
-<!-- Container of States and Cities -->
 <div class="container">
-    <div class="col-md-6">
-        <div class="alert alert-info text-center" role="alert" style="margin-top: 50px;">
-            Exemple of using an API from IBGE for all brazilian states and their cities. <a href="https://servicodados.ibge.gov.br/api/docs/localidades?versao=1#api-_" target="_blank">Click here to read the docs!</a>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header"> States and cities data using Fetch API </div>
-            <div class="card-body">
-                <!-- <form onsubmit="showValues(event, this)"> -->
-                    <div class="form-group">
-                        <select name="state" class="form-control">
-                            <option value="">Select a state</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select name="city" class="form-control" disabled>
-                            <option value="">Select a city</option>
-                        </select>
-                    </div>
-                <!-- <button type="submit" id="showValues" class="btn btn-primary">See Values</button> -->
-                <!-- </form> -->
-            </div>
-        </div>
-    </div>
-</div>
+    <div class="row">
 
-<!-- Container of Names -->
-<div class="container">
-    <div class="col-md-6">
-        <div class="alert alert-info text-center" role="alert" style="margin-top: 50px;">
-            Exemple of using an API from IBGE for brazilian names and their info and stats. <a href="https://servicodados.ibge.gov.br/api/docs/censos/nomes?versao=2" target="_blank">Click here to read the docs!</a>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header"> Names data using Fetch API </div>
-            <div class="card-body">
-                <a href="#modalNamesRankings" class="badge badge-pill badge-success" style="margin-bottom: 20px;"> See the ranking of brazilian names here!</a>      
-                <form onsubmit="getNameStats(event, this);">              
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-control" placeholder="Plese enter your name here.">
+        <!-- Container of States and Cities -->
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <div class="alert alert-info text-center" role="alert" style="margin-top: 50px;">
+                    Exemple of using an API from IBGE for all brazilian states and their cities. <a href="https://servicodados.ibge.gov.br/api/docs/localidades?versao=1#api-_" target="_blank">Click here to read the docs!</a>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header"> States and cities data using Fetch API </div>
+                    <div class="card-body">
+                        <!-- <form onsubmit="showValues(event, this)"> -->
+                            <div class="form-group">
+                                <select name="state" class="form-control">
+                                    <option value="">Select a state</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select name="city" class="form-control" disabled>
+                                    <option value="">Select a city</option>
+                                </select>
+                            </div>
+                        <!-- <button type="submit" id="showValues" class="btn btn-primary">See Values</button> -->
+                        <!-- </form> -->
                     </div>
-                    <button class="btn btn-primary" type="submit">See some cool stuffs</button>
-                </form>
+                </div>
             </div>
         </div>
+
+        <!-- Container of Names -->
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <div class="alert alert-info text-center" role="alert" style="margin-top: 50px;">
+                    Exemple of using an API from IBGE for brazilian names and their info and stats. <a href="https://servicodados.ibge.gov.br/api/docs/censos/nomes?versao=2" target="_blank">Click here to read the docs!</a>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header"> Names data using Fetch API </div>
+                    <div class="card-body">
+                        <a href="#modalNamesRankings" class="badge badge-pill badge-success" style="margin-bottom: 20px;"> See the ranking of brazilian names here!</a>      
+                        <form onsubmit="getNameStats(event, this);">              
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control" placeholder="Plese enter your name here.">
+                            </div>
+                            <button class="btn btn-primary" type="submit">See some cool stuffs</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
 </div>
 
