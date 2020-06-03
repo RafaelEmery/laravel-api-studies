@@ -7,23 +7,26 @@
 <div class="container">
     <div class="col-md-6">
         <div class="alert alert-info text-center" role="alert" style="margin-top: 50px;">
-            Exemple of using an API from IBGE for all brazilian states and their cities. <a href="https://servicodados.ibge.gov.br/api/docs/localidades?versao=1#api-_" target="_blank">Click here to read the doc!</a>
+            Exemple of using an API from IBGE for all brazilian states and their cities. <a href="https://servicodados.ibge.gov.br/api/docs/localidades?versao=1#api-_" target="_blank">Click here to read the docs!</a>
         </div>
     </div>
     <div class="col-md-6">
         <div class="card">
             <div class="card-header"> States and cities data using Fetch API </div>
             <div class="card-body">
-                <div class="form-group">
-                    <select name="state" class="form-control">
-                        <option value="">Select a state</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select name="city" class="form-control" disabled>
-                        <option value="">Select a city</option>
-                    </select>
-                </div>
+                <!-- <form onsubmit="showValues(event, this)"> -->
+                    <div class="form-group">
+                        <select name="state" class="form-control">
+                            <option value="">Select a state</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="city" class="form-control" disabled>
+                            <option value="">Select a city</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="showValues" class="btn btn-primary">See Values</button>
+                <!-- </form> -->
             </div>
         </div>
     </div>
@@ -77,6 +80,17 @@
     document
         .querySelector('select[name=state]')
         .addEventListener('change', getCities);
+
+    // function showValues(event, form) {
+    //     const input = event.target;
+
+    //     const stateSelected = input.nome;
+    //     const citySelected = input.nome;
+
+    //     const message = `Estado: ${stateSelected}; Cidade: ${citySelected}`;
+
+    //     alert(message);
+    // }
     
 </script>
     
