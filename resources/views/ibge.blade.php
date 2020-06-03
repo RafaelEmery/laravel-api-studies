@@ -53,19 +53,22 @@
 
     function getCities(event) {
         console.log('On getCities');
-        //Issue: concatenando cidades, o certo era apagar todas as options ao trocarmos o estado...
 
         const citySelect = document.querySelector('select[name=city]');
         const stateValueId = event.target.value;
 
         const urlForState = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${stateValueId}/municipios`;
 
+        citySelect.innerHTML = '<option value="">Select a city</option>';
+        citySelect.disabled = true;
+
         fetch(urlForState)
             .then(response => response.json())
             .then(cities => {
                 for (const city of cities) {
-                    citySelect.innerHTML += `<option value="${city.id}">${city.nome}</option>`;
+                    citySelect.innerHTML += `<option value="${city.nome}">${city.nome}</option>`;
                 }
+                console.log('Fetched!');
 
                 citySelect.disabled = false;
             });
