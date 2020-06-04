@@ -19,6 +19,22 @@ Route::get('/', function () {
 });
 
 /**
+ * Route for testing arrays and operations
+ */
+Route::get('/arrays', function () {
+    $array = [
+        'Element 0',
+        'Element 1 ',
+        120 => 'Element 120 (you can set a key in any element)',
+        'Element 121',
+        'Element 122 (and it goes on...)',
+        'custom key' => 'Thats a custom key'
+    ];
+
+    dd($array['custom key']);
+});
+
+/**
  * APIs on frontend of software
  */
 Route::group(['prefix' => 'frontend'], function () {
@@ -81,20 +97,36 @@ Route::group(['prefix' => 'backend'], function () {
         ]);
         $response = $client->request('GET', '/random/quote');
 
-        return $response->getBody();
+        $body = $response->getBody();
+
+        $fullQuote = json_decode($body, true);
+        
+        //Quote "attributes"
+        //Issue: change the format of $quoteDate to better reading
+        $quoteUrl = $fullQuote['_embedded']['source'][0]['url'];
+        $quoteDate = $fullQuote['appeared_at'];
+        $quote = $fullQuote['value'];
+
+        return $result = 
+        'Url: '.$quoteUrl.
+        ', Date: '.$quoteDate.
+        ', Dump stuff: '.$quote;
+        
     });
 
     Route::get('dump/author/{id}', function ($id) {
         
         $client = new Client([
-            'base_uri' => 'https://api.tronalddump.io',
+            'base_uri' => 'https://api.tronalddump.io/',
             'headers' => [
                 'Accept' => 'application/hal+json'
             ],
         ]);
-        $response = $client->request('GET', '/author/{id}');
+        $response = $client->request('GET', 'author/'.$id);
 
-        return $response->getBody();
+        $body = $response->getBody();
+
+        $dd(json_decode($body, true));
     });
 
     /**
@@ -105,10 +137,17 @@ Route::group(['prefix' => 'backend'], function () {
         $client = new Client([
             'base_uri' => 'https://api.postmon.com.br/v1/'
         ]);
-        $response = $client->request('GET', 'cep/' ,[
-            'cep_a_consultar' => $cep
-        ]);
+        $response = $client->request('GET', 'cep/'.$cep);
 
-        return $response->getBody();
+        $body = $response->getBody();
+        
+        //Now we have and array
+        $cepInfo = json_decode($body, true);
+
+        return $result = 
+        'Address: '.$cepInfo['logradouro'].
+        ', Neighborhood: '.$cepInfo['bairro'].
+        ', City: '.$cepInfo['cidade'].
+        ', State: '.$cepInfo['estado_info']['nome'];
     });
 });
