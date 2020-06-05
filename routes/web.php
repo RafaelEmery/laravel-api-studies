@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 /**
- * Route for testing arrays and operations
+ * Route for testing arrays and operations -> Just for testing some random stuff, do not consider!
  */
 Route::get('/arrays', function () {
     $array = [
@@ -61,7 +61,7 @@ Route::group(['prefix' => 'frontend'], function () {
 Route::group(['prefix' => 'backend'], function () {
     
     /**
-     * Testing how APIs usually work
+     * Testing how APIs usually work -> Just for testing some random stuff, do not consider!
      */
     Route::get('/test/{id}', function ($id) {
     
@@ -85,7 +85,7 @@ Route::group(['prefix' => 'backend'], function () {
     });
 
     /**
-     * Tronald Dump API for Trump's dumbest stuffs
+     * Tronald Dump API for Trump's random dumbest stuffs
      */
     Route::get('/dump/random', function () {
         
@@ -95,7 +95,7 @@ Route::group(['prefix' => 'backend'], function () {
                 'Accept' => 'application/hal+json'
             ],
         ]);
-        $response = $client->request('GET', '/random/quote');
+        $response = $client->get('/random/quote');
 
         $body = $response->getBody();
 
@@ -114,6 +114,9 @@ Route::group(['prefix' => 'backend'], function () {
         
     });
 
+    /**
+     * Tronald Dump API for Trump's dumbest stuffs searching by author's id
+     */
     Route::get('dump/author/{id}', function ($id) {
         
         $client = new Client([
