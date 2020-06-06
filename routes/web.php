@@ -75,10 +75,10 @@ Route::group(['prefix' => 'backend'], function () {
             case 2:
                 $client = new Client();
                 $response = $client->request('GET', 'https://api.github.com/RafaelEmery', [
-                    'auth' => ['RafaelEmery', 'pass']
+                    'auth' => ['RafaelEmery', 'my_github_password']
                 ]);
 
-                dd($response);
+                return $response->getBody();
             break;
         }
         
@@ -153,4 +153,9 @@ Route::group(['prefix' => 'backend'], function () {
         ', City: '.$cepInfo['cidade'].
         ', State: '.$cepInfo['estado_info']['nome'];
     });
+
+    /**
+     * Using a Controller for consuming APIs 
+     */
+    Route::get('/bla', 'ApiController@metodo');
 });
