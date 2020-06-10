@@ -155,10 +155,20 @@
 
             fetch(url)
                 .then(response => response.json())
-                .then(nameStats => {
-                    console.log(nameStats);
-                });
+                .then(nameStats => modalNameInfo(nameStats));
         }
+    }
+
+    //Issue: undefined fields
+    function modalNameInfo(name) {
+        console.log(name);
+        
+        const message = `
+            Nome que você digitou: ${name.nome},
+            Localidade: ${name.localidade}
+        `;
+
+        alert(message);
     }
 
 </script>

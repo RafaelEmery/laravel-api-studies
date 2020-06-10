@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
-    public function metodo()
+    public function method()
     {
-        return 'teste';
+        return 'Working!';
     }
 }

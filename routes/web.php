@@ -43,14 +43,14 @@ Route::group(['prefix' => 'frontend'], function () {
      * APIs that evolves CEP searching
      */
     Route::get('/cep', function () {
-        return view('cep');
+        return view('frontend.cep');
     });
     
     /**
      * APIs from ibge data services
      */
     Route::get('/ibge', function () {
-        return view('ibge');
+        return view('frontend.ibge');
     });
 });
 
@@ -157,5 +157,10 @@ Route::group(['prefix' => 'backend'], function () {
     /**
      * Using a Controller for consuming APIs 
      */
-    Route::get('/bla', 'ApiController@metodo');
+    Route::get('/controller', 'ApiController@method');
+
+    /**
+     * Controller and routes for Rick and Morty's APIs
+     */
+    Route::get('/rickandmorty/allcharacters', 'RickAndMortyController@allcharacters');
 });
