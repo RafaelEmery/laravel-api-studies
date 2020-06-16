@@ -35,6 +35,12 @@ Route::get('/arrays', function () {
 });
 
 /**
+ * 
+ */
+Route::get('login/facebook', 'SocialiteController@redirectToProvider');
+Route::get('login/facebook/callback', 'SocialiteController@handleProviderCallback');
+
+/**
  * APIs on frontend of software
  */
 Route::group(['prefix' => 'frontend'], function () {
