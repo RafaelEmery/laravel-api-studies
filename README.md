@@ -26,7 +26,7 @@ Here are some things i made.
 
 ### Frontend 
 
-![](/public/readme-src/frontend-ibge)
+![](/public/readme-src/frontend-ibge.png)
 
 The Javascript code at the *script* tag for getting all the states:
 
