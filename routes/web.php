@@ -58,6 +58,13 @@ Route::group(['prefix' => 'frontend'], function () {
     Route::get('/ibge', function () {
         return view('frontend.ibge');
     });
+    
+    /**
+     * Open Weather Map Api for info about weather
+     */
+    Route::get('/weather', function () {
+        return view('frontend.weather');
+    });
 });
 
 
@@ -158,6 +165,27 @@ Route::group(['prefix' => 'backend'], function () {
         ', Neighborhood: '.$cepInfo['bairro'].
         ', City: '.$cepInfo['cidade'].
         ', State: '.$cepInfo['estado_info']['nome'];
+    });
+
+    /**
+     * Open Weather Map API testing for getting the current weather
+     */
+    Route::get('weather/{city}', function ($city) {
+    
+        $apiKey = '6690575f2d9e4161426583aaa7bbc559';
+        $client = new Client([
+            'base_uri' => 'api.openweathermap.org/'
+        ]);
+
+        $response = $client->request('GET', 'data/2.5/weather', [
+            'query' => [
+                'q' => $city,
+                'appid' => $apiKey
+            ]
+        ]);
+        $weatherInfo = json_decode($response->getBody(), true);
+        
+        dd($weatherInfo);
     });
 
     /**
